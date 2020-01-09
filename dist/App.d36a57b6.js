@@ -33460,6 +33460,24 @@ var useDropdown = function useDropdown(label, defaultState, options) {
 
 var _default = useDropdown;
 exports.default = _default;
+},{"react":"../node_modules/react/index.js"}],"Pet.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = Pet;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function Pet(_ref) {
+  var name = _ref.name,
+      animal = _ref.animal,
+      breed = _ref.breed;
+  return _react.default.createElement("div", null, _react.default.createElement("h1", null, name), _react.default.createElement("h2", null, animal), _react.default.createElement("h2", null, breed));
+}
 },{"react":"../node_modules/react/index.js"}],"SearchParams.js":[function(require,module,exports) {
 "use strict";
 
@@ -33470,9 +33488,11 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _pet = require("@frontendmasters/pet");
+var _pet = _interopRequireWildcard(require("@frontendmasters/pet"));
 
 var _useDropdown5 = _interopRequireDefault(require("./useDropdown"));
+
+var _Pet = _interopRequireDefault(require("./Pet"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -33505,10 +33525,24 @@ var SearchParams = function SearchParams() {
       AnimalDropdown = _useDropdown2[1];
 
   var _useDropdown3 = (0, _useDropdown5.default)("Breed", "", breeds),
-      _useDropdown4 = _slicedToArray(_useDropdown3, 2),
+      _useDropdown4 = _slicedToArray(_useDropdown3, 3),
       breed = _useDropdown4[0],
-      BreedDropdown = _useDropdown4[1];
+      BreedDropdown = _useDropdown4[1],
+      setBreed = _useDropdown4[2];
 
+  (0, _react.useEffect)(function () {
+    setBreeds([]);
+    setBreed("");
+
+    _pet.default.breeds(animal).then(function (_ref) {
+      var breeds = _ref.breeds;
+      var breedStrings = breeds.map(function (_ref2) {
+        var name = _ref2.name;
+        return name;
+      });
+      setBreeds(breedStrings);
+    }, console.error);
+  }, [animal, setBreed, setBreeds]);
   return _react.default.createElement("div", {
     className: "search-params"
   }, _react.default.createElement("form", null, _react.default.createElement("label", {
@@ -33525,7 +33559,7 @@ var SearchParams = function SearchParams() {
 
 var _default = SearchParams;
 exports.default = _default;
-},{"react":"../node_modules/react/index.js","@frontendmasters/pet":"../node_modules/@frontendmasters/pet/index.js","./useDropdown":"useDropdown.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","@frontendmasters/pet":"../node_modules/@frontendmasters/pet/index.js","./useDropdown":"useDropdown.js","./Pet":"Pet.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -33585,7 +33619,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "46879" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36937" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
