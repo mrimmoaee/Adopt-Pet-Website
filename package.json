@@ -1,13 +1,14 @@
 {
   "name": "Adopt-Pet-Website",
   "version": "1.0.0",
+  "homepage": "https://github.com/Shomee1015/Adopt-Pet-Website",
   "description": "React Adopting Pet Website Using React Project with React js and Hooks",
   "main": "index.js",
   "scripts": {
     "dev": "parcel src/index.html",
     "format": "prettier \"src/**/*.{js,html}\" --write",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -19,7 +20,6 @@
   "bugs": {
     "url": "https://github.com/Shomee1015/Adopt-Pet-Website/issues"
   },
-  "homepage": "https://github.com/Shomee1015/Adopt-Pet-Website#readme",
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
@@ -32,6 +32,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
+    "gh-pages": "^2.2.0",
     "parcel-bundler": "^1.12.4",
     "prettier": "^1.19.1"
   },
